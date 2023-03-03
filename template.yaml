@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  python3.9
+
+  Sample SAM Template for sample-app
+
+Globals:
+  Function:
+    Timeout: 60
+
+Resources:
+  HelloWorldFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      MemorySize:  512
+      Timeout: 300
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          URL: 'https://google.com'
+    Metadata:
+      Dockerfile: Dockerfile
+      DockerContext: ./hello_world
+      DockerTag: python3.9-v1
